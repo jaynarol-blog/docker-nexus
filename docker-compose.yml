@@ -1,0 +1,15 @@
+version: '2'
+services:
+
+    repo:
+      image: sonatype/nexus3
+      container_name: repo
+      restart: always
+      ports:
+        - 443:8443
+        - 8443:8880
+      volumes:
+        - ./src:/nexus-data
+        - ./ssl:/opt/sonatype/nexus/etc/ssl
+        - ./config/org.sonatype.nexus.cfg:/opt/sonatype/nexus/etc/org.sonatype.nexus.cfg
+        - ./config/jetty-https.xml:/opt/sonatype/nexus/etc/jetty-https.xml
